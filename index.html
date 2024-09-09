@@ -21,9 +21,12 @@
     <meta property="og:type" content="website">
 </head>
 <body>
+    <!-- A11y Change; skip to main content-->
+    <a class="skip-to-main" href="#content">Skip to main content</a>
 
     <!-- Sematic HTML Change; div to nav-->
-    <nav>
+    <!-- A11y Change; ARIA landmark roll-->
+    <nav role="navigation">
         <ul>
             <li><a href="/">Homepage</a></li>
             <li><a href="/about.html">About</a></li>
@@ -39,7 +42,8 @@
     </header>
 
     <!-- Semantic HTML Change; div to main-->
-    <main class="center">
+    <!-- A11y Change; ARIA landmark role-->
+    <main class="center" id="content" role="main">
 
         <!-- Semantic HTML Change; div to section-->
         <section>
@@ -114,7 +118,8 @@
     </main>
 
     <!-- Semantic HTML Change; div to footer-->
-    <footer>
+    <!-- A11y Change; ARIA landmark Tole-->
+    <footer role="contentinfo">
         <div class="center">
             All rights reserved &copy; Fabio Nolasco
         </div>
