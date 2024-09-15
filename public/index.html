@@ -108,7 +108,7 @@
             </article>
     
             <article>
-                <h1>Chart</h1>
+                <h1>Budget</h1>
                 <canvas id="myChart"></canvas>
             </article>
 
@@ -131,7 +131,7 @@
             labels: [],
             datasets: [{
                 data: [],
-                backgroundColor: ['LightSkyBlue', 'CadetBlue', 'CornflowerBlue']
+                backgroundColor: ['SteelBlue', 'LightSkyBlue', 'CadetBlue', 'CornflowerBlue', 'DarkSlateBlue', 'MidnightBlue', 'PaleTurquoise']
             }]
         };
 
@@ -147,16 +147,16 @@
             axios.get('/budget')
             .then(function (res) {
                 console.log(res.data);
-                for (var i = 0; i < res.data.length; i++) {
-                    dataSource.datasets[0].data[i] = res.data[i].budget;
-                    dataSource.labels[i] = res.data[i].title;
+                for (var i = 0; i < res.data.budget.length; i++) {
+                    console.log(res.data.budget);
+                    dataSource.datasets[0].data[i] = res.data.budget[i].budget;
+                    dataSource.labels[i] = res.data.budget[i].title;
                 }
                 createChart();
             }) 
         }
 
         getBudget();
-        //createChart();
     </script>
 
 

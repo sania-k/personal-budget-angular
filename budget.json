@@ -1,0 +1,33 @@
+{
+    "budget": [
+        {
+            "title": "Take-out",
+            "budget": "30"
+        }, 
+        {
+            "title": "Grocery",
+            "budget": "90"
+        }, 
+        {
+            "title": "Rent",
+            "budget": "650"
+        }, 
+        {
+            "title": "Utilities",
+            "budget": "100"
+        }, 
+        {
+            "title": "Prescription",
+            "budget": "50"
+        }, 
+        {
+            "title": "Gas",
+            "budget": "100"
+        }, 
+        {
+            "title": "Entertainment",
+            "budget": "30"
+        }
+    ]
+}
+    
