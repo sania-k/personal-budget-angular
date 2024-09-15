@@ -103,6 +103,26 @@ main article {
     margin-top: -44px;
 }
 
+#d3Chart {
+    width: 100%;
+    height: 100%;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+path.slice{
+    stroke-width:2px;
+}
+
+polyline{
+    opacity: .3;
+    stroke: black;
+    stroke-width: 2px;
+    fill: none;
+}
+
+  
+
 @media screen and (min-width: 768px) {
     main article {
         margin: 10px;
