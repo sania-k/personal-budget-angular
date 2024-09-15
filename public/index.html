@@ -19,6 +19,7 @@
     <meta property="og:url" content="http://157.230.92.78/pb/public/">
     <meta property="og:image" content="bg.png">
     <meta property="og:type" content="website">
+
 </head>
 <body>
     <!-- A11y Change; skip to main content-->
@@ -107,10 +108,8 @@
             </article>
     
             <article>
-                <h1>Free</h1>
-                <p>
-                    This app is free!!! And you are the only one holding your data!
-                </p>
+                <h1>Chart</h1>
+                <canvas id="myChart"></canvas>
             </article>
 
         </section>
@@ -121,9 +120,45 @@
     <!-- A11y Change; ARIA landmark Tole-->
     <footer role="contentinfo">
         <div class="center">
-            All rights reserved &copy; Fabio Nolasco
+            All rights reserved &copy; Sania Khan ;]
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js" integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js" integrity="sha512-ZwR1/gSZM3ai6vCdI+LVF1zSq/5HznD3ZSTk7kajkaj4D292NLuduDCO1c/NT8Id+jE58KYLKT7hXnbtryGmMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var dataSource = {
+            labels: [],
+            datasets: [{
+                data: [],
+                backgroundColor: ['LightSkyBlue', 'CadetBlue', 'CornflowerBlue']
+            }]
+        };
+
+        function createChart() {
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: dataSource
+            });
+        }
+
+        function getBudget() {
+            axios.get('/budget')
+            .then(function (res) {
+                console.log(res.data);
+                for (var i = 0; i < res.data.length; i++) {
+                    dataSource.datasets[0].data[i] = res.data[i].budget;
+                    dataSource.labels[i] = res.data[i].title;
+                }
+                createChart();
+            }) 
+        }
+
+        getBudget();
+        //createChart();
+    </script>
+
 
 </body>
 </html>
