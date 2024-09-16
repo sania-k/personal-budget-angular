@@ -84,38 +84,14 @@
             </article>
     
             <article>
-                <h1>Stay on track</h1>
-                <p>
-                    Do you know where you are spending your money? If you really stop to track it down,
-                    you would get surprised! Proper budget management depends on real data... and this
-                    app will help you with that!
-                </p>
-            </article>
-    
-            <article>
-                <h1>Alerts</h1>
-                <p>
-                    What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
-                </p>
-            </article>
-    
-            <article>
-                <h1>Results</h1>
-                <p>
-                    People who stick to a financial plan, budgeting every expense, get out of debt faster!
-                    Also, they to live happier lives... since they expend without guilt or fear... 
-                    because they know it is all good and accounted for.
-                </p>
-            </article>
-    
-            <article>
                 <h1>Budget</h1>
                 <canvas id="chartjsChart"></canvas>
+                
             </article>
 
-            <article></article>
+            <article>
                 <h1>Budget</h1>
-                <svg id="d3Chart" width="600" height="450"></svg>
+                <svg id="d3Chart" viewBox="0 100 340 340" preserveAspectRatio="xMidYMid meet"></svg>
             </article>
 
         </section>
@@ -185,10 +161,12 @@
             .attr("class", "labels");
         svg.append("g")
             .attr("class", "lines");
+        svg.append("g")
+            .attr("transform", `translate(100,100)`);
 
-        var width = 600,
+        var width = 340,
             height = 450,
-            radius = Math.min(width, height) / 2;
+            radius = Math.min(width, height) / 4;
 
         var pie = d3.layout.pie()
             .sort(null)

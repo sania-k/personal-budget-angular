@@ -92,8 +92,9 @@ main article {
     display: inline-block;
     width: 100%;
     max-width: 340px;
-    text-align: justify;
+    text-align: center;
     margin: 20px;
+    vertical-align: top;    
 }
 
 .skip-to-main {
@@ -104,10 +105,9 @@ main article {
 }
 
 #d3Chart {
-    width: 100%;
-    height: 100%;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    width: 340px;
+    height: auto;
+    max-height: 340px;
 }
 
 path.slice{
