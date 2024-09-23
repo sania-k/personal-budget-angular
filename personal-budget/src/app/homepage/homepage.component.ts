@@ -2,6 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Chart, PieController, ArcElement, Tooltip, Legend } from 'chart.js';
 import * as d3 from 'd3';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'pb-homepage',
@@ -10,27 +11,15 @@ import * as d3 from 'd3';
 })
 export class HomepageComponent implements AfterViewInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private dataService: DataService) {}
   private _current: any = {};
 
-  public dataSource = {
-    labels: [] as string[],
-    datasets: [{
-      data: [] as number[],
-      backgroundColor: ['SteelBlue', 'LightSkyBlue', 'CadetBlue', 'CornflowerBlue', 'DarkSlateBlue', 'MidnightBlue', 'PaleTurquoise']
-    }]
-  };
-
   ngAfterViewInit(): void {
-    this.http.get('http://localhost:3456/budget')
-      .subscribe((res: any) => {
-        for (let i = 0; i < res.budget.length; i++) {
-          this.dataSource.datasets[0].data[i] = res.budget[i].budget;
-          this.dataSource.labels[i] = res.budget[i].title;
-        }
-        this.createChartJs();
-        this.createD3Chart();
-      });
+    this.dataService.fetchData().then(data => {
+      // Call your chart creation methods here
+      this.createChartJs();
+      this.createD3Chart();
+    });
   }
 
   // Chart.js pie chart
@@ -45,7 +34,7 @@ export class HomepageComponent implements AfterViewInit {
       if (ctx) {
         new Chart(ctx, {
           type: 'pie',
-          data: this.dataSource
+          data: this.dataService.dataSource
         });
       }
     }
@@ -80,12 +69,12 @@ export class HomepageComponent implements AfterViewInit {
       .outerRadius(radius * 0.9);
 
     const color = d3.scaleOrdinal()
-      .domain(this.dataSource.labels)
+      .domain(this.dataService.dataSource.labels)
       .range(d3.schemeCategory10);
 
-    const data = this.dataSource.labels.map((label, i) => ({
+    const data = this.dataService.dataSource.labels.map((label, i) => ({
       label,
-      value: this.dataSource.datasets[0].data[i]
+      value: this.dataService.dataSource.datasets[0].data[i]
     }));
 
     this.updateD3Chart(data, svg, pie, arc, outerArc, radius, color);
